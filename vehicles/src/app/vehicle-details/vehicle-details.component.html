@@ -6,16 +6,29 @@
       <td>{{vehicle.id}}</td>
     </tr>
     <tr>
-      <td><label>Name: </label></td>
-      <td><input [(ngModel)]="vehicle.name" placeholder="name" /></td>
+      <div class="form-group row">
+      <td><label class="col-sm-2 col-form-label">Name: </label></td>
+      <div class="col-sm-30">
+      <td><input [(ngModel)]="vehicle.name" placeholder="name"  class="form-control" /></td>
+    </div>
+    </div>
     </tr>
     <tr>
-      <td><label>Type: </label></td>
-      <td><input [(ngModel)]="vehicle.type" placeholder="type" /></td>
+        <div class="form-group row">
+      <td><label class="col-sm-2 col-form-label">Type: </label></td>
+      <div class="col-sm-30">
+      <td><input [(ngModel)]="vehicle.type" placeholder="type"  class="form-control" /></td>
+    </div>
+    </div>
     </tr>
     <tr>
-      <td><label>Mass: </label></td>
-      <td><input [(ngModel)]="vehicle.mass" placeholder="mass" /></td>
+        <div class="form-group row">
+      <td><label class="col-sm-2 col-form-label">Mass: </label></td>
+      <div class="col-sm-30">
+      <td><input [(ngModel)]="vehicle.mass" placeholder="mass"  class="form-control" /></td>
+      </div>
+    </div>
     </tr>
+  
   </table>
 </div>

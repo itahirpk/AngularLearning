@@ -1,12 +1,15 @@
 
-  <table class="tftable">
+  <table class="table table-striped">
+  <thead>
   <tr>
     <th>ID</th>
     <th>Name</th>
     <th>Type</th>
     <th>Mass</th>
   </tr>
-  <tr *ngFor="let vehicle of vehicles" class="tftable"
+</thead>
+<tbody>
+  <tr *ngFor="let vehicle of vehicles" 
     (click)="onSelect(vehicle)"
     [class.selected]="vehicle===selectedVehicle">
     <td>{{vehicle.id}}</td>
@@ -14,7 +17,9 @@
     <td>{{vehicle.type}}</td>
     <td>{{vehicle.mass}}</td>
   </tr>
+</tbody>
 </table>
+
 <app-vehicle-details [vehicle]="selectedVehicle"></app-vehicle-details>
 
 

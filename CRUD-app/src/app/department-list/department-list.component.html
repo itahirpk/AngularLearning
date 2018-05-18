@@ -1,0 +1,46 @@
+<div class="container">
+  <table class="table">
+    <tr>
+      <th scope="col">
+        Department ID
+      </th>
+      <th scope="col">
+        Department Name
+      </th>
+      <th scope="col">
+        Description
+      </th>
+      <th scope="col">
+        Cost Center
+      </th>
+      <th scope="col">
+        Actions
+      </th>
+    </tr>
+    <tr scope="row" *ngFor="let department of dept">
+      <td>
+        {{department.dept_id}}
+      </td>
+      <td>
+        {{department.dept_name}}
+      </td>
+      <td>
+        {{department.dept_desc}}
+      </td>
+      <td>
+        {{department.cost_center}}
+      </td>
+      <td>
+          <app-department
+  
+          [department]="department"
+          (delete)="onDeleteDepartment($event)"
+          (update)="onUpdateDepartment($event)">          
+        </app-department>
+        
+      </td>
+    </tr>
+  </table>
+  </div>
+
+
