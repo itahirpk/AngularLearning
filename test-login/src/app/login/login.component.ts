@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,8 +14,8 @@ import { MatSnackBar } from '@angular/material';
 export class LoginComponent implements OnInit {
   hide = true;
   form;
-  tasks; 
-  
+  tasks;
+
 
 
 
@@ -24,7 +23,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private snackbar: MatSnackBar,
     private http: HttpClient) {
-      
+
 
     this.form = this.fb.group({
       email: ['', Validators.required],
@@ -32,46 +31,48 @@ export class LoginComponent implements OnInit {
       task_id: ['']
     });
   }
-newTask() {
-  this.authService.generateTask().subscribe(data => console.log('in create tasks ' + data));
-}
+  newTask() {
+    this.authService.generateTask().subscribe(data => console.log('in create tasks ' + data));
+  }
 
-getAllTasks(){
-  this.authService.getTasks().subscribe(data=> this.tasks=  data);
-  console.log('Task listing ' + this.tasks);
-}
+  getAllTasks() {
+    this.authService.getTasks().subscribe(data => this.tasks = data);
+    console.log('Task listing ' + this.tasks);
 
-deleteTask() {
-  this.authService.deleteTask(this.form.value.task_id).subscribe();
-}
+  }
 
-signUp(){
-  this.authService.createUser(this.form.value.email, this.form.value.password).subscribe();
-  this.authService.sendToken = true;
-}
+  deleteTask() {
+    this.authService.deleteTask(this.form.value.task_id).subscribe();
+  }
+
+  signUp() {
+    this.authService.createUser(this.form.value.email, this.form.value.password).subscribe();
+    this.authService.sendToken = true;
+  }
 
   login() {
 
-      this.authService.attemptAuth(this.form.value.email, this.form.value.password).subscribe(
-        data => { 
-          localStorage.setItem('token',data.headers.get('authorization'));
+    this.authService.attemptAuth(this.form.value.email, this.form.value.password).subscribe(
+      data => {
+        localStorage.setItem('token', data.headers.get('authorization'));
 
-//          this.decodeToken(localStorage.getItem('token') );
-//          this.token.saveToken(data.token);
-//          this.router.navigate(['user']);
-        } ,err=> { if (err.status == 401) {
-                     let snakbarref =  this.snackbar.open('Invalid credentials','Retry', {
-                        duration: 2000
-                      }); //console.log('Invalid username or password ' +err);
-                      snakbarref.onAction().subscribe(()=>{
-                      console.log('Snackbar retry clicked');
+        //          this.decodeToken(localStorage.getItem('token') );
+        //          this.token.saveToken(data.token);
+        //          this.router.navigate(['user']);
+      }, err => {
+        if (err.status == 401) {
+          let snakbarref = this.snackbar.open('Invalid credentials', 'Retry', {
+            duration: 2000
+          }); //console.log('Invalid username or password ' +err);
+          snakbarref.onAction().subscribe(() => {
+            console.log('Snackbar retry clicked');
 
-                      })
-                    }
-                } 
-      );
-    }
- 
+          })
+        }
+      }
+    );
+  }
+
   ngOnInit() {
   }
 }
